@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form data-bind="submit: function(data, event) {getPrimeFactors($('#number').val());}">
+    	Number: <input type="text" name="number" ID="number" /> 
+    	<input type="submit" value="Factor"/>
+    	
+    	<div id="factorsDiv" data-bind="visible:primeFactors().length > 0">
+    		<h2>Prime Factors of <span data-bind="text:number"></span></h2>
+	    	<ul id="factorsList" data-bind="foreach:primeFactors">
+	    		<li data-bind="text:$data"></li>
+	    	</ul>
+    	</div>
+    	<div id="noPrimes" class="error" data-bind="visible:primeFactors().length == 0 && factorClicked">
+    		<span data-bind="text:number"></span> has no prime factors.
+    	</div>
+    	
+    	<div id="error" class="error" data-bind="visible: error() != '', text:error"></div>
+    	
+    </form>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+	<script src="/scripts/main.js"></script>	
+  </body>
+</html>
